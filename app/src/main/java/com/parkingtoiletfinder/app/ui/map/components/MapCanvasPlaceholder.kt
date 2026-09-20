@@ -129,8 +129,19 @@ private fun CurrentLocationDot(modifier: Modifier = Modifier) {
     }
 }
 
-/** id 문자열 해시를 이용해 15~85% 범위의 안정적인(고정된) 좌표를 만든다. 실제 위경도 투영 전까지의 임시 배치. */
+// claude.ai/design 공영지도.dc.html 목업 원본의 mapPlaces x/y(%) 값. 실제 위경도 투영 전까지의 임시 배치.
+private val DESIGN_MOCK_POSITIONS = mapOf(
+    "p1" to (30f to 26f),
+    "p2" to (70f to 18f),
+    "p3" to (52f to 62f),
+    "p4" to (18f to 72f),
+    "r1" to (40f to 44f),
+    "r2" to (80f to 50f),
+)
+
+/** 디자인 목업에 없는 id는 해시 기반 15~85% 범위 좌표로 대체한다. */
 private fun markerPercentPosition(id: String): Pair<Float, Float> {
+    DESIGN_MOCK_POSITIONS[id]?.let { return it }
     val hash = abs(id.hashCode())
     val x = 15 + (hash % 70)
     val y = 15 + ((hash / 70) % 70)
