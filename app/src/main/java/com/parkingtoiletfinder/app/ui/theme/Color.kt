@@ -4,7 +4,7 @@ import androidx.compose.ui.graphics.Color
 
 /**
  * claude.ai/design "공영지도" 프로젝트(Industry 디자인 시스템)의 컬러 토큰을 그대로 옮긴 값.
- * 원본: _ds/industry-*/styles.css 의 :root 변수.
+ * 원본: _ds/industry-2fdf2218.../styles.css 의 :root 변수.
  */
 object AppColors {
     // 기본 배경/표면/텍스트

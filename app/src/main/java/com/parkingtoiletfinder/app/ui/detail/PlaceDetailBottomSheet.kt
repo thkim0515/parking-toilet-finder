@@ -16,6 +16,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Accessible
 import androidx.compose.material.icons.filled.Close
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
@@ -38,6 +39,7 @@ import com.parkingtoiletfinder.app.ui.theme.AppShapes
  * 화장실: 이름/주소/개방시간/장애인 화장실 여부.
  * 하단 "길 안내 시작" 버튼은 네이버 지도 앱으로 딥링크한다([launchNaverMapDirections] 참고).
  */
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PlaceDetailBottomSheet(
     place: Place,
