@@ -1,0 +1,10 @@
+# local.properties 는 git에 커밋되지 않습니다. 이 파일을 복사해서 local.properties 로 만들고 값을 채워주세요.
+sdk.dir=/path/to/Android/Sdk
+
+# TODO: 네이버 지도 Android SDK 클라이언트 ID (아직 미발급)
+# https://console.ncloud.com/naver-service/application 에서 Maps 서비스 등록 후 발급
+NAVER_MAP_CLIENT_ID=
+
+# TODO: 공공데이터포털 주차장/화장실 정보 API 인증키 (아직 미발급)
+# https://www.data.go.kr 에서 "주차장정보" / "전국공중화장실표준데이터" 검색 후 활용 신청
+PUBLIC_DATA_API_KEY=

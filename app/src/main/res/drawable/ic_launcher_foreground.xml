@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- 주차 마커 핀 모양 심볼 -->
+    <path
+        android:fillColor="#F2F2F3"
+        android:pathData="M54,26 C40,26 30,36 30,49 C30,66 54,88 54,88 C54,88 78,66 78,49 C78,36 68,26 54,26 Z" />
+    <path
+        android:fillColor="#5980A6"
+        android:pathData="M42,42 L66,42 L66,46 L62,46 L62,64 L57,64 L57,56 L49,56 L49,64 L44,64 L44,46 L42,46 Z M49,46 L49,51 L57,51 L57,46 Z" />
+</vector>
