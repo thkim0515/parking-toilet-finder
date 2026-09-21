@@ -6,7 +6,6 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -20,6 +19,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.parkingtoiletfinder.app.data.model.PlaceFilter
@@ -98,6 +98,7 @@ fun PlaceFilterSegment(
     }
 }
 
+/** 지도/목록 화면 상단에 떠 있는 검색바+필터 카드. 그림자를 둔 알약형 카드로 지도 위에 겹쳐 보인다. */
 @Composable
 fun MapTopBar(
     filter: PlaceFilter,
@@ -107,8 +108,10 @@ fun MapTopBar(
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .background(AppColors.Background)
-            .padding(PaddingValues(horizontal = 16.dp, vertical = 10.dp)),
+            .padding(horizontal = 12.dp, vertical = 10.dp)
+            .shadow(elevation = 10.dp, shape = RoundedCornerShape(22.dp), clip = false)
+            .background(AppColors.Background, RoundedCornerShape(22.dp))
+            .padding(horizontal = 12.dp, vertical = 12.dp),
         verticalArrangement = Arrangement.spacedBy(10.dp),
     ) {
         SearchBar()

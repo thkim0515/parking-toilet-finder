@@ -1,0 +1,62 @@
+name: Build and Release APK
+
+# 태그(v로 시작)를 푸시하거나, Actions 탭에서 수동으로 실행하면
+# 디버그 서명된 APK를 빌드해서 GitHub Release에 자동으로 첨부합니다.
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      version_name:
+        description: '릴리즈 태그/버전 이름 (예: v0.1.0)'
+        required: true
+        default: 'v0.1.0'
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 저장소 체크아웃
+        uses: actions/checkout@v4
+
+      - name: JDK 17 설정
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: gradle
+
+      - name: Android SDK 설정
+        uses: android-actions/setup-android@v3
+
+      - name: gradlew 실행 권한 부여
+        run: chmod +x gradlew
+
+      - name: 릴리즈 버전 이름 결정
+        id: version
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "name=${{ github.event.inputs.version_name }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "name=${GITHUB_REF_NAME}" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: 디버그 APK 빌드
+        run: ./gradlew assembleDebug --no-daemon
+
+      - name: 배포용 APK 준비
+        run: |
+          mkdir -p release
+          cp app/build/outputs/apk/debug/app-debug.apk "release/parking-toilet-finder-${{ steps.version.outputs.name }}.apk"
+
+      - name: GitHub 릴리즈 생성 및 APK 업로드
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.version.outputs.name }}
+          name: ${{ steps.version.outputs.name }}
+          generate_release_notes: true
+          files: release/*.apk
